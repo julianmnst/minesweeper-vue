@@ -1,6 +1,8 @@
 <template>
 	<div class="board">
-		<cell :mined="false" :flagged="false"></cell>
+		<div v-for="(row, i) in rows">
+			<cell v-for="(cell, j) in row" :coordinates="{ row: i, col: j}"></cell>
+		</div>
 	</div>
 </template>
 
@@ -13,8 +15,7 @@ export default {
 		cell: Cell
 	},
 	props: {
-		rows: Number,
-		cols: Number
+		rows: Array,
 	}
 }
 </script>
