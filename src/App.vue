@@ -7,19 +7,10 @@
 <script>
 import Board from './components/Board'
 
-let cells = {
-
-}
-
 export default {
   name: 'app',
   components: {
     Board
-  },
-  data() {
-    return {
-      cells
-    }
   }
 }
 </script>

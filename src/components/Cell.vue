@@ -1,7 +1,7 @@
 <template>
-	<div class="cell">
+	<div v-bind:class="{ revealed: cell.revealed, cell: true }" @click="revealCell">
 		<span v-if="flagged" class="flag">?</span>
-		<div v-if="cell.mined" class="mine"></div>
+		<div v-if="cell.mined && cell.revealed" class="mine"></div>
 	</div>
 </template>
 <script>
@@ -19,6 +19,11 @@ export default {
 		cell() {
 			return this.$store.state.cells[this.coordinates.row][this.coordinates.col];
 		}
+	},
+	methods: {
+		revealCell() {
+			this.$store.dispatch('revealCell', { coordinates: this.coordinates })
+		}
 	}
 }
 </script>
@@ -31,6 +36,11 @@ export default {
 	margin: 1px;
 	display: inline-block;
 }
+
+.revealed {
+	background-color: #ad8cf3 !important;
+}
+
 .flag {
 	color: white;
 }
