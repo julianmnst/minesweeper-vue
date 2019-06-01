@@ -1,12 +1,17 @@
 <template>
   <div id="app">
-    Welcome to Your Vue.js App
+    <board></board>
   </div>
 </template>
 
 <script>
+import Board from './components/Board'
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    Board
+  }
 }
 </script>
 
