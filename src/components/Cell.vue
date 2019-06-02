@@ -32,13 +32,15 @@ export default {
 	width: 40px;
 	height: 40px;
 	background-color:#e79aead4;
-	border: 1px solid white;
-	margin: 1px;
+	margin: 3px;
 	display: inline-block;
+	transition: all .3s;
+	box-shadow: 1px 1px 3px black;
 }
 
 .revealed {
 	background-color: #ad8cf3 !important;
+	box-shadow: 0 0 0, inset 1px 1px 5px black;
 }
 
 .flag {

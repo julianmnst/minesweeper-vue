@@ -3,6 +3,8 @@
 		<div v-for="(row, i) in rows">
 			<cell v-for="(cell, j) in row" :coordinates="{ row: i, col: j}"></cell>
 		</div>
+		<h1>Game {{ $store.state.gameStatus }}</h1>
+		<p v-if="$store.state.gameStatus !== 'over'">Click on a cell to play</p>
 	</div>
 </template>
 
@@ -22,6 +24,8 @@ export default {
 
 <style scoped>
 	.board {
+		padding: 20px;
+		margin-top: 30px;
 		border: 1px solid black;
 		max-width: 400px;
 		margin-left: auto;

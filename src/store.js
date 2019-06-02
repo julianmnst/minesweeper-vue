@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 const ROWS = 8,
 	COLS = 8,
-	MINES = 10;
+	MINES_LIMIT = 10;
 
 Vue.use(Vuex)
 
@@ -34,22 +34,33 @@ function populateBoard() {
 		}
 	}
 
-	return rows
+	rows = setMines(rows, MINES_LIMIT);
+
+	return rows;
 }
+
 
 /**
  * Sets the coordinates for N mines
+ * returns the cells with 'mined' property set to TRUE
  */
 function setMines(cells, limit) {
 	let coordinates = [];
-	for (let i = 0; i < limit; i++) {
-		coordinates.push([
+
+	for (let i = 0; (coordinates.length) < limit; i++) {
+		let newCoordinates = [
 			getRandomArbitrary(0, ROWS),
 			getRandomArbitrary(0, COLS)
-		])
+		];
+
+		coordinates.push(newCoordinates)
 	}
 
-	return coordinates;
+	coordinates.map((coord) => {
+		cells[coord[0]][coord[1]].mined = true;
+	});
+
+	return cells;
 }
 
 /**
@@ -57,16 +68,32 @@ function setMines(cells, limit) {
  */
 export default new Vuex.Store({
   state: {
-  	cells: populateBoard()
+  	cells: populateBoard(),
+  	gameStatus: 'in progress'
   },
   mutations: {
   	reveal(state, {row, col}) {
   		state.cells[row][col].revealed = true;
+  	},
+  	revealAll(state) {
+  		state.cells.map(row => {
+  			row.map(cell => {
+  				cell.revealed = true;
+  				return cell;
+  			});
+  		})
   	}
   },
   actions: {
-  	revealCell({ commit }, { coordinates }) {
-  		commit('reveal', coordinates)
+  	revealCell({ commit, state }, { coordinates }) {
+  		if (state.cells[coordinates.row][coordinates.col].mined) {
+  			state.gameStatus = 'over'
+  			commit('revealAll')
+  		}
+  		else {
+	  		commit('reveal', coordinates)
+  		}
+
   	}
   }
 })
