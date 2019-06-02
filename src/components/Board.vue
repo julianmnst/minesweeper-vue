@@ -27,7 +27,7 @@ export default {
 		padding: 20px;
 		margin-top: 30px;
 		border: 1px solid black;
-		max-width: 400px;
+		max-width: 80%;
 		margin-left: auto;
 	  	margin-right: auto;
 	  	text-align: center;
