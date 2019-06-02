@@ -1,6 +1,8 @@
 <template>
-	<div v-bind:class="{ revealed: cell.revealed, cell: true }" @click="revealCell">
-		<span v-if="flagged" class="flag">?</span>
+	<div v-bind:class="{ revealed: cell.revealed, cell: true }"
+		@click="revealCell"
+		@contextmenu.prevent="toggleFlag">
+		<div v-if="flagged" class="flag">?</div>
 		<div v-if="cell.mined && cell.revealed" class="mine"></div>
 	</div>
 </template>
@@ -23,6 +25,9 @@ export default {
 	methods: {
 		revealCell() {
 			this.$store.dispatch('revealCell', { coordinates: this.coordinates })
+		},
+		toggleFlag() {
+			this.flagged = !this.flagged
 		}
 	}
 }
@@ -45,6 +50,9 @@ export default {
 
 .flag {
 	color: white;
+	position: absolute;
+	font-size: 2em;
+	margin-left: 15px;
 }
 .mine {
 	position: relative;
