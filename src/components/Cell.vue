@@ -2,7 +2,7 @@
 	<div v-bind:class="{ revealed: cell.revealed, cell: true }"
 		@click="revealCell"
 		@contextmenu.prevent="toggleFlag">
-		<div v-if="flagged" class="flag">?</div>
+		<div v-if="cell.flagged" class="flag">?</div>
 		<div v-if="cell.mined && cell.revealed" class="mine"></div>
 	</div>
 </template>
@@ -27,7 +27,7 @@ export default {
 			this.$store.dispatch('revealCell', { coordinates: this.coordinates })
 		},
 		toggleFlag() {
-			this.flagged = !this.flagged
+			this.cell.flagged = !this.cell.flagged
 		}
 	}
 }

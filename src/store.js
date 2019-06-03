@@ -29,7 +29,8 @@ function populateBoard() {
 	  	for (let j = 0; j < rows[i].length; j++) {
 		  	rows[i][j] = {
 		  		mined: false,
-		  		revealed: false
+		  		revealed: false,
+		  		flagged: false
 		  	};
 		}
 	}
@@ -148,7 +149,10 @@ function revealAdjacents(state, {row, col}) {
 export default new Vuex.Store({
   state: {
   	cells: populateBoard(),
-  	gameStatus: 'in progress'
+  	gameStatus: 'in progress',
+  	ROWS: 8,
+  	COLS: 8,
+  	MINES_LIMIT: 10
   },
   mutations: {
   	reveal(state, {row, col}) {
@@ -176,7 +180,7 @@ export default new Vuex.Store({
   	},
   	rePopulateBoard(state) {
   		state.cells = populateBoard();
-  	}
+  	},
   },
   actions: {
   	revealCell({ commit, state }, { coordinates }) {
