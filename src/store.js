@@ -164,12 +164,24 @@ export default new Vuex.Store({
   				return cell;
   			});
   		})
+  	},
+  	gameOver(state) {
+  		setTimeout(() => {
+	  		state.gameStatus = 'over';
+  		}, 300)
+  	},
+  	gameInProgress(state) {
+		state.gameStatus = 'in progress';
+
+  	},
+  	rePopulateBoard(state) {
+  		state.cells = populateBoard();
   	}
   },
   actions: {
   	revealCell({ commit, state }, { coordinates }) {
   		if (state.cells[coordinates.row][coordinates.col].mined) {
-  			state.gameStatus = 'over'
+  			commit('gameOver')
   			commit('revealAll')
   		}
   		else {
@@ -177,6 +189,10 @@ export default new Vuex.Store({
 	  		commit('revealAdjacents', coordinates)
   		}
 
+  	},
+  	restartGame({ commit }) {
+  		commit('rePopulateBoard')
+  		commit('gameInProgress')
   	}
   }
 })

@@ -40,12 +40,12 @@ export default {
 	margin: 3px;
 	display: inline-block;
 	transition: all .3s;
-	box-shadow: 1px 1px 3px black;
+	box-shadow: 1px 1px 3px #00000099;
 }
 
 .revealed {
 	background-color: #ad8cf3 !important;
-	box-shadow: 0 0 0, inset 1px 1px 5px black;
+	box-shadow: 0 0 0, inset 1px 1px 3px #00000073;
 }
 
 .flag {
