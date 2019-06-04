@@ -27,6 +27,6 @@
     "last 2 versions"
   ],
   "engines": {
-    "node": "6.11.1"
+    "node": "8.12.0"
   }
 }
