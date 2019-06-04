@@ -25,5 +25,8 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "engines": {
+    "node": "6.11.1"
+  }
 }
