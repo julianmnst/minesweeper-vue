@@ -53,6 +53,7 @@ export default {
 	position: absolute;
 	font-size: 2em;
 	margin-left: 15px;
+	text-shadow: 1px 1px 3px #00000073;
 }
 .mine {
 	position: relative;
